@@ -7,7 +7,7 @@ Goal: Should store recipes(CookBook), attempts at recipes (Diary), and recipe su
 2. Attempts - {Recipe; Date + time; Story: Journaling } 
 
 3. Suggestions - { Recipe Database; Recipes matched on ingredients; Recipe Success scorer }
-
+"""
 Recipe
 	Name
 		Title: String
@@ -15,3 +15,4 @@ Recipe
 		Recipe(no instructions)
 	Instruction<>
 		Description: String
+"""
