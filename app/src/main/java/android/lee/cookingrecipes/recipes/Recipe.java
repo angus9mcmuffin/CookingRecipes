@@ -11,14 +11,15 @@ public class Recipe {
     // TODO Expand instructions to a series of steps with similar techniques but with different times
     private String instructions;
     // TODO Add optional ingredients, change to hashmap to map name to quant
-    private ArrayList<Recipe> ingredients;
+    private ArrayList<Recipe> ingredients = new ArrayList<Recipe>();
+
+    private long uuid;
 
     public Recipe(String name) {
         this.name = name;
     }
     public Recipe(String name, ArrayList<String> ingredients, String instructions) {
         this.name = name;
-        this.ingredients = new ArrayList<Recipe>();
         this.instructions = instructions;
 
         for (String i : ingredients) {
@@ -62,5 +63,5 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-
+    protected void setUuid(long uuid) { this.uuid = uuid; }
 }
