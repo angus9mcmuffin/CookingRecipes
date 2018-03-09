@@ -2,6 +2,9 @@ package android.lee.cookingrecipes.recipes;
 
 import android.provider.BaseColumns;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by Jason on 3/5/2018.
  */
@@ -16,6 +19,10 @@ public final class RecipeReaderContract {
         public static final String TABLE_RECIPE_INGREDIENTS = "recipe_ingredients";
         public static final String COLUMN_RECIPE_ID = "recipe_id";
         public static final String COLUMN_INGREDIENT_ID = "ingredient_id";
+        public static final ArrayList<String> ROWS = new ArrayList<String>(Arrays
+                .asList(new String[]{RecipeReaderEntry.COLUMN_RECIPE_ID,
+                RecipeReaderEntry.COLUMN_NAME,
+                RecipeReaderEntry.COLUMN_INSTRUCTIONS}));
 
         public static String generateForeignKeyConstraint(String localField, String foreignTable, String foreignField) {
             return "FOREIGN KEY(" + localField + ") REFERENCES " + foreignTable + "(" + foreignField + ")";

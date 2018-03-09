@@ -21,11 +21,12 @@ public class Recipe {
     public Recipe(String name, ArrayList<String> ingredients, String instructions) {
         this.name = name;
         this.instructions = instructions;
-
-        for (String i : ingredients) {
-            // TODO Check if ingredient is name of stored recipe, get it and connect it to this (not necessarily all at once lazily)
-            // Assume all ingredients are new
-            this.ingredients.add(new Recipe(i));
+        if (ingredients != null) {
+            for (String i : ingredients) {
+                // TODO Check if ingredient is name of stored recipe, get it and connect it to this (not necessarily all at once lazily)
+                // Assume all ingredients are new
+                this.ingredients.add(new Recipe(i));
+            }
         }
     }
 
