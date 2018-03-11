@@ -65,6 +65,10 @@ public final class RecipeLibrary extends SQLiteOpenHelper {
 
     // TODO FETCH RECIPE WITH UUID
     public Recipe getRecipe(long uuid) {
+        throw new RuntimeException("NOT IMPLEMENTED SINCE WHY FETCH ON ID");
+    }
+
+    public Recipe getRecipeByName(String name) {
         SQLiteDatabase db = getReadableDatabase();
         throw new RuntimeException("NOT IMPLEMENTED");
     }

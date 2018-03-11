@@ -9,6 +9,8 @@ import java.util.Arrays;
  * Created by Jason on 3/5/2018.
  */
 
+// TODO CREATE DIARY TABLE STORING RECIPE, DATE, AND EXECUTION
+
 public final class RecipeReaderContract {
     private RecipeReaderContract() {}
 
