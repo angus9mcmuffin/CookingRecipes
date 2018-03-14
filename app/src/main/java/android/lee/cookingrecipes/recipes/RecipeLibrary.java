@@ -25,16 +25,6 @@ public final class RecipeLibrary extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-//    public RecipeLibrary getRecipeLibrary(Activity activity) {
-//        synchronized (SINGLETON) {
-//            if (SINGLETON == null) {
-//                SINGLETON = new RecipeLibrary(activity);
-//            }
-//        }
-//
-//        return SINGLETON;
-//    }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(RecipeReaderContract.CREATE_RECIPE_TABLE_SQL);
