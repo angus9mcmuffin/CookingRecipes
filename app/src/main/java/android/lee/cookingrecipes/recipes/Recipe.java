@@ -11,7 +11,7 @@ public class Recipe {
     // TODO Expand instructions to a series of steps with similar techniques but with different times
     private String instructions;
     // TODO Add optional ingredients, change to hashmap to map name to quant
-    private ArrayList<Recipe> ingredients = new ArrayList<Recipe>();
+    private IngredientList ingredients = new IngredientList();
 
     private long uuid;
 
@@ -25,7 +25,7 @@ public class Recipe {
             for (String i : ingredients) {
                 // TODO Check if ingredient is name of stored recipe, get it and connect it to this (not necessarily all at once lazily)
                 // Assume all ingredients are new
-                this.ingredients.add(new Recipe(i));
+                this.ingredients.addIngredient(new Recipe(i));
             }
         }
     }
@@ -38,13 +38,13 @@ public class Recipe {
         this.name = name;
     }
 
-    public ArrayList<Recipe> getIngredients() {
+    public IngredientList getIngredients() {
         return this.ingredients;
     }
 
     public String getIngredientsConcat() {
         StringBuilder sb = new StringBuilder();
-        for (Recipe r : ingredients) {
+        for (Recipe r : ingredients.getIngredients()) {
             sb.append(r.getName() + ", ");
         }
 
@@ -53,7 +53,7 @@ public class Recipe {
     }
 
     public void addIngredient(Recipe recipe) {
-        ingredients.add(recipe);
+        ingredients.addIngredient(recipe);
     }
 
     public String getInstructions() {

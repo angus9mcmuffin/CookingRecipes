@@ -38,9 +38,11 @@ public class MainActivity extends ListActivity {
     }
 
     public void addRecipe(View view) {
-        Recipe recipe = new Recipe(mName.getText().toString()
-                , StringUtils.parseIngredients(mIngredients.getText().toString())
-                , mInstructions.getText().toString());
+        Recipe recipe = new Recipe(mName.getText().toString(),
+                StringUtils.parseIngredients(mIngredients.getText().toString()),
+                mInstructions.getText().toString()
+        );
+
         displayRecipes.add(recipe);
         updateRecipeView();
     }
