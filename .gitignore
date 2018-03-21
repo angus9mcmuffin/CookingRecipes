@@ -7,3 +7,9 @@
 /build
 /captures
 .externalNativeBuild
+.idea
+.classpath
+.project
+.settings
+.metadata
+*.ipr
