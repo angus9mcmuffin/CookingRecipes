@@ -73,19 +73,22 @@ public final class RecipeLibrary extends SQLiteOpenHelper {
         Cursor data = db.query(recipeTable, rowNames, null, null, null, null, null);
         return mapRecipeData(data);
     }
-
+    // TODO NEED TO WRITE SOME TESTING
     private ArrayList<Recipe> mapRecipeData(Cursor data) {
         ArrayList<Recipe> recipes = new ArrayList<Recipe>();
         String name, description;
+        long rowId;
+
         int nameIndex = RecipeReaderContract.RecipeReaderEntry.ROWS
                 .indexOf(RecipeReaderContract.RecipeReaderEntry.COLUMN_NAME);
         int descriptionIndex = RecipeReaderContract.RecipeReaderEntry.ROWS
                 .indexOf(RecipeReaderContract.RecipeReaderEntry.COLUMN_INSTRUCTIONS);
 
         while (data.moveToNext()) {
+            rowId = data.getPosition();
             name = data.getString(nameIndex);
             description = data.getString(descriptionIndex);
-            recipes.add(new Recipe(name, null, description));
+            recipes.add(new Recipe(rowId, name, null, description));
         }
 
         return recipes;

@@ -1,5 +1,7 @@
 package android.lee.cookingrecipes.recipes;
 
+import android.lee.cookingrecipes.UtilService;
+
 import java.util.ArrayList;
 
 /**
@@ -15,12 +17,21 @@ public class Recipe {
 
     private long uuid;
 
+    // TODO Need to implement a service call to update the database with the new recipes
     public Recipe(String name) {
-        this.name = name;
+        this(null, name, null, "");
     }
+
     public Recipe(String name, ArrayList<String> ingredients, String instructions) {
+        this(null, name, ingredients, instructions);
+        UtilService.putRecipeInLibrary(this);
+    }
+
+    public Recipe(Long uuid, String name, ArrayList<String> ingredients, String instructions) {
         this.name = name;
         this.instructions = instructions;
+        this.uuid = uuid != null ? uuid : this.uuid;
+
         if (ingredients != null) {
             for (String i : ingredients) {
                 // TODO Check if ingredient is name of stored recipe, get it and connect it to this (not necessarily all at once lazily)
@@ -43,6 +54,9 @@ public class Recipe {
     }
 
     public String getIngredientsConcat() {
+        if (ingredients.getIngredients().size() == 0) {
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         for (Recipe r : ingredients.getIngredients()) {
             sb.append(r.getName() + ", ");
@@ -64,5 +78,5 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    protected void setUuid(long uuid) { this.uuid = uuid; }
+    public void setUuid(long uuid) { this.uuid = uuid; }
 }

@@ -1,6 +1,5 @@
 package android.lee.cookingrecipes;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.lee.cookingrecipes.recipes.Recipe;
 import android.os.Bundle;
@@ -21,20 +20,22 @@ public class MainActivity extends ListActivity {
     private EditText mInstructions;
     private ListView mListView;
     private ShortListAdapter mShortListAdapter;
-    private ArrayList<Recipe> displayRecipes = new ArrayList<Recipe>();
+    private ArrayList<Recipe> mDisplayRecipes = new ArrayList<Recipe>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mShortListAdapter = new ShortListAdapter();
+
         setListAdapter(mShortListAdapter);
         mAddRecipe = (Button) findViewById(R.id.add_recipe);
         mName = (EditText) findViewById(R.id.recipe_name);
         mIngredients = (EditText) findViewById(R.id.recipe_ingredients);
         mInstructions = (EditText) findViewById(R.id.recipe_instructions);
         mListView = (ListView) findViewById(android.R.id.list);
-
+        UtilService.startRecipeLibrary(this);
+        UtilService.getAllRecipesFromLibrary(mDisplayRecipes, mShortListAdapter);
     }
 
     public void addRecipe(View view) {
@@ -43,8 +44,9 @@ public class MainActivity extends ListActivity {
                 mInstructions.getText().toString()
         );
 
-        displayRecipes.add(recipe);
+        mDisplayRecipes.add(recipe);
         updateRecipeView();
+
     }
     // TODO Migrate to its own controller class set
     private void updateRecipeView() {
@@ -55,17 +57,17 @@ public class MainActivity extends ListActivity {
 
         @Override
         public int getCount() {
-            return displayRecipes.size();
+            return mDisplayRecipes.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return displayRecipes.get(position);
+            return mDisplayRecipes.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            return displayRecipes.get(position).hashCode();
+            return mDisplayRecipes.get(position).hashCode();
         }
 
         @Override
