@@ -16,8 +16,6 @@ import java.util.ArrayList;
 // Should interface with recipes and give back recipes from memory
     // Need to interface with Android external storage for pictures -> do text for now
 public final class RecipeLibrary extends SQLiteOpenHelper {
-//    private static RecipeLibrary SINGLETON;
-//    private static String LOCAL_STORAGE = "localStorage.ks";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "RecipeLibrary.db";
 

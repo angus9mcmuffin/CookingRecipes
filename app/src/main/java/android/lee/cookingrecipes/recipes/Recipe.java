@@ -15,6 +15,8 @@ public class Recipe {
     // TODO Add optional ingredients, change to hashmap to map name to quant
     private IngredientList ingredients = new IngredientList();
 
+    private String imageUrl;
+
     private long uuid;
 
     // TODO Need to implement a service call to update the database with the new recipes
@@ -57,9 +59,16 @@ public class Recipe {
         if (ingredients.getIngredients().size() == 0) {
             return "";
         }
+
         StringBuilder sb = new StringBuilder();
         for (Recipe r : ingredients.getIngredients()) {
-            sb.append(r.getName() + ", ");
+            int quantity = ingredients.getAmount(r);
+
+            if (quantity == 0) {
+                continue;
+            }
+
+            sb.append(quantity + " " + r.getName() + ", ");
         }
 
         sb.delete(sb.length() - 2, sb.length());
@@ -77,6 +86,8 @@ public class Recipe {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
+
+    public void setImageUrl(String url) { this.imageUrl = url; }
 
     public void setUuid(long uuid) { this.uuid = uuid; }
 }

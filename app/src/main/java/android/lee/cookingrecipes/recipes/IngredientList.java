@@ -39,6 +39,6 @@ public class IngredientList {
     }
 
     public int getAmount(Recipe r) {
-        return listOfIngredients.containsKey(r) ? listOfIngredients.get(r) : 0;
+        return listOfIngredients.containsKey(r.getName()) ? listOfIngredients.get(r) : 0;
     }
 }

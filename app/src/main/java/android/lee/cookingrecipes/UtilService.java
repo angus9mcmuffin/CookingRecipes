@@ -33,7 +33,7 @@ public class UtilService {
         }).start();
     }
 
-    public static void getAllRecipesFromLibrary(final ArrayList<Recipe> destination, final MainActivity.ShortListAdapter recipeListAdapter) {
+    public static void getAllRecipesFromLibrary(final ArrayList<Recipe> destination, final ShortListAdapter recipeListAdapter) {
         new Thread(new Runnable() {
             @Override
             public void run() {
