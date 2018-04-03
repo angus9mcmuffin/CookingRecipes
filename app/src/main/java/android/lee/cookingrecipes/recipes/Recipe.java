@@ -1,6 +1,6 @@
 package android.lee.cookingrecipes.recipes;
 
-import android.lee.cookingrecipes.UtilService;
+import android.lee.cookingrecipes.RecipeUtils;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class Recipe {
 
     public Recipe(String name, ArrayList<String> ingredients, String instructions) {
         this(null, name, ingredients, instructions);
-        UtilService.putRecipeInLibrary(this);
+        RecipeUtils.putRecipeInLibrary(this);
     }
 
     public Recipe(Long uuid, String name, ArrayList<String> ingredients, String instructions) {

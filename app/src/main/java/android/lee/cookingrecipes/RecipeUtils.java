@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * Created by jason on 3/27/18.
  */
 
-public class UtilService {
+public class RecipeUtils {
     private static RecipeLibrary LIBRARY;
 
-    private UtilService() { }
+    private RecipeUtils() { }
 
     public synchronized static void startRecipeLibrary(Activity activity) {
         if (LIBRARY == null) {

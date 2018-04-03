@@ -19,3 +19,11 @@ Ideally I want a main page => feed, a way to retrieve previous attempts at the r
 ideally I want it to take only 2-3? pages that 
 The ui will include a scroll feed of images of your recipe
 
+If I want to support a camera, I need to implement a new activity to support the camera feed, then which it must be added to a controller logic that transforms the byte
+stream into a file input stored at some file name. The file name is then stored into the database under along with the recipe entry, or maybe if one to many, another table with many entries
+corresponding to each recipe_id. 
+
+If I want to support retrieving images from the internet, I would need to implement the contract required by Android's WebView layer, then embed it within my own desirable activity. However, 
+I would be putting this as the cover picture, so I would have to change the list view from a simple ListView to an ImageView with an expandable view from pressing on the image.
+
+These should all be viewable from my main page!

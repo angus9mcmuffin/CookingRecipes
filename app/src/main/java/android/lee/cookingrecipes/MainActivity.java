@@ -4,12 +4,8 @@ import android.app.ListActivity;
 import android.lee.cookingrecipes.recipes.Recipe;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 public class MainActivity extends ListActivity {
@@ -31,8 +27,8 @@ public class MainActivity extends ListActivity {
         mName = (EditText) findViewById(R.id.recipe_name);
         mIngredients = (EditText) findViewById(R.id.recipe_ingredients);
         mInstructions = (EditText) findViewById(R.id.recipe_instructions);
-        UtilService.startRecipeLibrary(this);
-        UtilService.getAllRecipesFromLibrary(mDisplayRecipes, mShortListAdapter);
+        RecipeUtils.startRecipeLibrary(this);
+        RecipeUtils.getAllRecipesFromLibrary(mDisplayRecipes, mShortListAdapter);
     }
 
     public void addRecipe(View view) {

@@ -13,6 +13,7 @@ import java.util.Set;
  */
 
 public class IngredientList {
+    // Need to change integers because ingredients needs units
     private Map<String, Integer> listOfIngredients = Collections.synchronizedMap(new HashMap<String, Integer>());
 
     public IngredientList() { }
