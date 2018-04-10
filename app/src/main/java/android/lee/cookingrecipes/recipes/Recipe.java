@@ -1,6 +1,7 @@
 package android.lee.cookingrecipes.recipes;
 
 import android.lee.cookingrecipes.RecipeUtils;
+import android.lee.cookingrecipes.StringUtils;
 
 import java.util.ArrayList;
 
@@ -24,18 +25,19 @@ public class Recipe {
         this(null, name, null, "");
     }
 
-    public Recipe(String name, ArrayList<String> ingredients, String instructions) {
-        this(null, name, ingredients, instructions);
-        RecipeUtils.putRecipeInLibrary(this);
+    private Recipe(String name, String ingredients, String instructions, String imageUrl) {
+        this(null, name, ingredients, instructions, imageUrl);
     }
 
-    public Recipe(Long uuid, String name, ArrayList<String> ingredients, String instructions) {
+    public Recipe(Long uuid, String name, String ingredients, String instructions, String imageUrl) {
         this.name = name;
         this.instructions = instructions;
         this.uuid = uuid != null ? uuid : this.uuid;
+        this.imageUrl = imageUrl;
+        ArrayList<String> stringToRecipes = StringUtils.parseIngredients(ingredients);
 
-        if (ingredients != null) {
-            for (String i : ingredients) {
+        if (stringToRecipes != null) {
+            for (String i : stringToRecipes) {
                 // TODO Check if ingredient is name of stored recipe, get it and connect it to this (not necessarily all at once lazily)
                 // Assume all ingredients are new
                 this.ingredients.addIngredient(new Recipe(i));
@@ -90,4 +92,39 @@ public class Recipe {
     public void setImageUrl(String url) { this.imageUrl = url; }
 
     public void setUuid(long uuid) { this.uuid = uuid; }
+
+    public String getImageUrl() { return this.imageUrl; }
+
+    public static class Builder {
+        private String name, instructions, ingredients, imageUrl;
+        private long uuid;
+
+        public Builder() { }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setInstructions(String instructions) {
+            this.instructions = instructions;
+            return this;
+        }
+
+        public Builder setIngredients(String ingredients) {
+            this.ingredients = ingredients;
+            return this;
+        }
+
+        public Builder setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+            return this;
+        }
+
+        public Recipe build() {
+            Recipe recipe = new Recipe(name, instructions, ingredients, imageUrl);
+            RecipeUtils.putRecipeInLibrary(recipe);
+            return recipe;
+        }
+    }
 }

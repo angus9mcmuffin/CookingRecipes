@@ -13,6 +13,7 @@ public class MainActivity extends ListActivity {
     private EditText mName;
     private EditText mIngredients;
     private EditText mInstructions;
+    private EditText mImageUrl;
     private ShortListAdapter mShortListAdapter;
     private ArrayList<Recipe> mDisplayRecipes = new ArrayList<Recipe>();
 
@@ -27,15 +28,17 @@ public class MainActivity extends ListActivity {
         mName = (EditText) findViewById(R.id.recipe_name);
         mIngredients = (EditText) findViewById(R.id.recipe_ingredients);
         mInstructions = (EditText) findViewById(R.id.recipe_instructions);
+        mImageUrl = (EditText) findViewById(R.id.image_url);
         RecipeUtils.startRecipeLibrary(this);
         RecipeUtils.getAllRecipesFromLibrary(mDisplayRecipes, mShortListAdapter);
     }
 
     public void addRecipe(View view) {
-        Recipe recipe = new Recipe(mName.getText().toString(),
-                StringUtils.parseIngredients(mIngredients.getText().toString()),
-                mInstructions.getText().toString()
-        );
+        Recipe recipe = new Recipe.Builder()
+                .setName(mName.getText().toString())
+                .setIngredients(mIngredients.getText().toString())
+                .setInstructions(mInstructions.getText().toString())
+                .setImageUrl(mImageUrl.getText().toString()).build();
 
         mDisplayRecipes.add(recipe);
         updateRecipeView();

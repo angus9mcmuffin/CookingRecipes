@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.lee.cookingrecipes.recipes.Recipe;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -49,6 +50,8 @@ public class ShortListAdapter extends BaseAdapter {
         ((TextView) convertView.findViewById(R.id.item_name)).setText(recipe.getName());
         ((TextView) convertView.findViewById(R.id.item_ingredients)).setText(recipe.getIngredientsConcat());
         ((TextView) convertView.findViewById(R.id.item_description)).setText(recipe.getInstructions());
+        WebView webView = (WebView) convertView.findViewById(R.id.item_image_url);
+        webView.loadUrl(recipe.getImageUrl());
 
         return convertView;
     }
